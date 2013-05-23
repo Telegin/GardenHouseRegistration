@@ -1,0 +1,176 @@
+/**********************************************************************
+ *     Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+ *              University of Fribourg, Switzerland
+ *       E-Government Class Project - Garden House Registration
+ *                           Form Styles
+ **********************************************************************/
+
+div.form_container
+{
+    width: 350px;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+    background-color: #FFFFFF;
+    border:   4px solid #588514;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
+
+div.mun_work_container
+{
+    width: auto;
+    height: auto;
+    padding: 5px 5px 5px 5px;
+    background-color: #FFFFFF;
+    border:   2px solid #588514;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
+
+div.form_title
+{
+    width: auto;
+    height: auto;
+    padding: 8px 8px 8px 8px;
+    font:bold 13px/100% Arial, Helvetica, sans-serif; 
+    background-color: #088A29;
+    color: #FFFFFF;
+}
+
+table.form_table
+{
+    border-collapse: collapse;
+}
+
+table.mun_work_table
+{
+    background-color: #FFFFFF;
+    border:  1px solid #588514;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
+
+th.header
+{
+    font:bold 12px/100% Arial, Helvetica, sans-serif;
+    border:  1px solid #588514;
+    padding: 7px;
+    color: #0000FF;
+}
+
+td.label
+{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 13px;
+}
+
+td.mun_label
+{
+    font:bold 12px/100% Arial, Helvetica, sans-serif;
+    border:  1px solid #588514;
+    padding: 8px;
+}
+
+td.asterisk
+{
+    width: 18px;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 17px;
+    color: #F00000;
+}
+
+input.txtbox
+{
+    font-size: 14px;
+    color: #588514;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+    box-shadow: 2px 2px 5px #aaa;
+     -o-box-shadow: 2px 2px 5px #aaa;
+     -webkit-box-shadow: 2px 2px 5px #aaa;
+     -moz-box-shadow: 2px 2px 5px #aaa;
+
+}
+
+select.what_municipality
+{
+    width: 187px;
+    font-size: 13px;
+    color: #588514;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif; 
+    padding: 3px;
+    border-color: gray;
+    margin-left: 2px;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+}
+
+select.what_canton
+{
+    font-size: 14px;
+    color: #588514;
+    font-weight: bold;
+    padding: 4px;
+    border:   2px solid #000000;
+    margin-left: 50px;
+    margin-bottom: 5px;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+}
+
+div.form_instruction_container
+{
+    width:  320px;
+    padding: 9px 9px 9px 9px;
+    font-weight: bold;
+    border: 2px dashed #588514;
+    color:#000000; 
+    font-size: 13px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    margin-bottom: 10px;
+    text-align: justify;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+    box-shadow: 2px 2px 5px #aaa;
+     -o-box-shadow: 2px 2px 5px #aaa;
+     -webkit-box-shadow: 2px 2px 5px #aaa;
+     -moz-box-shadow: 2px 2px 5px #aaa;
+}

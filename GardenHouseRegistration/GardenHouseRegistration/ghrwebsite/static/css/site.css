@@ -1,0 +1,175 @@
+/**********************************************************************
+ *     Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+ *              University of Fribourg, Switzerland
+ *       E-Government Class Project - Garden House Registration
+ *                       Main Site Styles
+ **********************************************************************/
+
+body
+{
+    background: -webkit-linear-gradient(left, #2F2727, #588514, #2F2727, #588514, #2F2727);
+}
+
+.root_container
+{
+    width:  1000px;
+    height: auto;
+    margin-left:  auto;
+    margin-right: auto;
+    padding: 5px 5px 5px 5px;
+
+    background-color: #FFFFFF;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
+
+div.user_access_panel a
+{
+    float: right;
+    width: 120px;
+    height: 18px;
+    margin-right: 12px;
+    margin-top: -5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif; 
+    padding: 2px 2px 4px 2px;
+    background-color: #588514;
+    
+    -moz-border-radius: 8px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+}
+
+div.user_access_panel a:hover
+{
+    background:#60a318; 
+    background:-moz-linear-gradient(top,  #60a318 0%, #588514 100%); 
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#60a318), color-stop(100%,#588514)); 
+    background:-webkit-linear-gradient(top,  #60a318 0%,#588514 100%); 
+    background:-o-linear-gradient(top,  #60a318 0%,#588514 100%); 
+    background:-ms-linear-gradient(top,  #60a318 0%,#588514 100%); 
+    background:linear-gradient(top,  #60a318 0%,#588514 100%); 
+    filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#60a318', endColorstr='#588514',GradientType=0 ); 
+}
+
+.trunk_container
+{
+    margin-left:  10px;
+    margin-right: 10px;
+}
+
+.banner
+{
+    width:  auto;
+    margin-bottom: 5px;
+}
+
+.site_button
+{
+    background-color: #FFFFFF;
+    border:   2px solid #588514;
+    padding:  5px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius:    7px;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
+
+.site_button:hover
+{
+    background-color: #588514;
+    color: #FFFFFF;
+}
+
+div.error_container
+{
+    width:  320px;
+    padding: 9px 9px 9px 9px;
+    margin-bottom: 9px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #DF0101;
+    border: 2px dashed #DF0101;
+    font-family: Arial, Helvetica, sans-serif; 
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+    box-shadow: 2px 2px 5px #aaa;
+     -o-box-shadow: 2px 2px 5px #aaa;
+     -webkit-box-shadow: 2px 2px 5px #aaa;
+     -moz-box-shadow: 2px 2px 5px #aaa;
+}
+
+div.error_caption
+{
+    color:#000000; 
+    font-size: 14px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    margin-bottom: 7px;
+}
+
+iframe.legal_spec
+{
+    width:972px; 
+    height:600px;
+    border: 4px solid #588514;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+    box-shadow: 2px 2px 5px #aaa;
+     -o-box-shadow: 2px 2px 5px #aaa;
+     -webkit-box-shadow: 2px 2px 5px #aaa;
+     -moz-box-shadow: 2px 2px 5px #aaa;
+
+}
+
+iframe.attachmentview
+{
+    border: 4px solid #588514;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+
+    box-shadow: 2px 2px 5px #aaa;
+     -o-box-shadow: 2px 2px 5px #aaa;
+     -webkit-box-shadow: 2px 2px 5px #aaa;
+     -moz-box-shadow: 2px 2px 5px #aaa;
+}
+
+img.arrow
+{
+    float: right;
+    width: 100px;
+    cursor: pointer;
+    margin-top: -240px;
+    margin-right: 10px;
+}

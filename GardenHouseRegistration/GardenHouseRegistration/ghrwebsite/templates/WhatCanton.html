@@ -1,0 +1,51 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    This will be a child template which asks the user from where
+    canton he/she is. :)
+  ------------------------------------------------------------------>
+
+<!-- It's parent template -->
+{% extends 'Homepage.html' %}
+
+{% block title %} From What Canton Are You? {% endblock %}
+
+{% block content %}
+<div class='form_container'>
+    
+    <form id='req_acct_form' action='/ReqAcct/' method='get'>
+
+        <table class='form_table'>
+
+            <div class='form_instruction_container' style='margin-bottom: 15px;'>
+                Good day! Before you proceed to the account registration request form, we would like to know from which canton do you live?
+            </div>
+    
+            <tr>
+                <td align='center'>
+                    <select class='what_canton' name='select_canton'>
+                        {% for canton in allCanton %}
+                            <option value='{{ canton.canton_id }}'> 
+                                {{ canton.canton_name }} ({{ canton.canton_initial }})  
+                            </option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td align='center'>
+                    <div style='margin-top: 3px;margin-left: 25px;'>
+                        <input class='site_button' type='submit' value='Confirm' />
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</div>
+{% endblock %}

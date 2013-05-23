@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>GardenHouseRegistration</Name>
+    <RootNamespace>GardenHouseRegistration</RootNamespace>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>196b3b5a-95f4-484e-8cb6-6d631e80e6d9</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="GardenHouseRegistration\ghrwebsite\dbTouchers.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\helpers.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\inputCheckers.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\messages.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\models.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\tests.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\views.py" />
+    <Compile Include="GardenHouseRegistration\ghrwebsite\__init__.py" />
+    <Compile Include="GardenHouseRegistration\views.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="GardenHouseRegistration\__init__.py" />
+    <Compile Include="GardenHouseRegistration\settings.py" />
+    <Compile Include="GardenHouseRegistration\urls.py" />
+    <Compile Include="GardenHouseRegistration\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebPiReference Include="https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml%3fDjango">
+      <Feed>https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml</Feed>
+      <ProductId>Django</ProductId>
+      <FriendlyName>Django 1.4</FriendlyName>
+    </WebPiReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GardenHouseRegistration\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\static\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\static\css\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\static\images\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\static\javascript\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\static\pdf\" />
+    <Folder Include="GardenHouseRegistration\ghrwebsite\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\css\bubble_tooltip.css" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\css\menu.css" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\css\site.css" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\css\form.css" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\images\arrow.png" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\images\banner.png" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\images\qmark.png" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\javascript\EditMunProf.js" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\javascript\LoginForm.js" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\javascript\MunPage.js" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\javascript\RegAcctForm.js" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\pdf\lsEng.pdf" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\static\pdf\lsFr.pdf" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\Attachments.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\EditMunProf.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\Homepage.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\LegalSpecEng.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\LegalSpecFr.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\Login.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\MenuBar.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\MunPage.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\NoRegisteredMunicipalities.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\PrintConfirmation.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\ReqAcctForm.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\ReqAcctSuccess.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\UserPage.html" />
+    <Content Include="GardenHouseRegistration\ghrwebsite\templates\WhatCanton.html" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4674/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

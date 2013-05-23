@@ -1,0 +1,227 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    Edit Municipality Profile Page
+  ------------------------------------------------------------------>
+
+<!-- It's parent template -->
+{% extends 'Homepage.html' %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+<div class='form_container'>
+
+    <form id='req_acct_form' action='/EditMunProf/' method='post' onsubmit='return confirmEditMunProf();'>
+
+        <div class='form_instruction_container' id='form_instruction_container'>
+            Welcome to your simple profile edit page! It is requested that you change your password time to time. Hover on the [?] to know what are the constraints in each field we require.
+        </div>
+
+        {% if input_check_errors %}
+            <script type='text/javascript'> 
+                var el = document.getElementById('form_instruction_container');
+                el.parentNode.removeChild(el);
+            </script>
+            <div class='error_container'>
+                <div class='error_caption'> 
+                    Sorry, there were Errors found: 
+                </div>
+                {% for error in input_check_errors %}
+                    {{ error }} <br/>
+                {% endfor %}
+            </div>
+        {% endif %} 
+
+        <table class='form_table' cellpadding='2px'>
+
+            <tr>
+                <td> </td>
+                <td class='label'> 
+                    Municipality: 
+                </td>
+                <td> 
+                   &nbsp; &nbsp; {{ municipality_name }}, {{ canton_initial }}
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label'> 
+                    E-Mail: 
+                </td>
+                <td> 
+                   &nbsp; &nbsp; {{ email_address }}
+                </td>
+            </tr>
+            <tr>
+                <td class='asterisk'> * </td>
+                <td class='label'> 
+                    Password1: 
+                </td>
+                <td> 
+                   <input class='txtbox' type='password' name='password1' id='password1' size='25' value='{{ password1 }}' /> 
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Password1 </span>		
+                        </span>		  
+                    </a> 
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label'> 
+                    Confirm P1: 
+                </td>
+                <td> 
+                   <input class='txtbox' type='password' name='password1_confirm' id='password1' size='25' value='{{ password1 }}' /> 
+                </td>
+            </tr>
+
+            <tr>
+                <td class='asterisk'> * </td>
+                <td class='label'> 
+                    Password2: 
+                </td>
+                <td> 
+                   <input class='txtbox' type='password' name='password2' id='password2' size='25' value='{{ password2 }}' /> 
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Password2 </span>		
+                        </span>		  
+                    </a> 
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label'> 
+                    Confirm P2: 
+                </td>
+                <td> 
+                   <input class='txtbox' type='password' name='password2_confirm' id='password2' size='25' value='{{ password2 }}' /> 
+                </td>
+            </tr>
+
+            <tr>
+                <td class='asterisk'> * </td>
+                <td class='label' colspan='3'>
+                    Street Address / Building No.:
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan='2'>
+                    <input class='txtbox' type='text' name='address_street' id='address_street' size='27' value='{{ address_street }}' /> &nbsp; <b> / </b> &nbsp;
+                    <input class='txtbox' type='text' name='address_number' id='address_number' size='1' value='{{ address_number }}' /> 
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Address </span>		
+                        </span>		  
+                    </a> 
+                </td>
+            </tr>
+
+            <tr>
+                <td class='asterisk'> * </td>
+                <td class='label'> 
+                    Postal Code: 
+                </td>
+                <td> 
+                    <input class='txtbox' type='text' name='address_postcode' id='address_postcode' size='13' value='{{ address_postcode }}' /> 
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Postal Code </span>		
+                        </span>		  
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label'>
+                    Phone No.:
+                </td>
+                <td>
+                    <input class='txtbox' type='text' name='phone_number' id='phone_number' size='25' value='{{ phone_number }}' />
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Phone Number </span>		
+                        </span>		  
+                    </a> 
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label'>
+                    Fax No.:
+                </td>
+                <td>
+                    <input class='txtbox' type='text' name='fax_number' id='fax_number' size='25' value='{{ fax_number }}' />
+                </td>
+                <td>
+                    <a href='#' class='tt'>
+                        <img src='../static/images/qmark.png' />
+		                <span class='tooltip'>
+		                    <span class='middle'> The Fax Number: </span>		
+                        </span>		  
+                    </a> 
+                </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td class='label' colspan='3'>
+                    Opening Hours:
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan='3'>
+                    {% if opening_hours %}
+                        <textarea rows='7' cols='35' style='overflow: hidden; resize:none;' name='opening_hours'>{{ opening_hours }}</textarea>
+                    {% else %}
+                        <textarea id='txtarea' rows='7' cols='35' style='overflow: hidden; resize:none;' name='opening_hours'></textarea>
+                        <script type='text/javascript'>
+                            document.getElementById('txtarea').value = '';
+                        </script>
+                    {% endif %} 
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan='2' align='center' style='padding-top:8px;'> 
+                    <div style='margin-top: 3px;'> 
+                        <input class='site_button' type='submit' value='Update Account Details' />
+                    </div>
+                </td>
+            </tr>   
+        </table>
+
+    </form>
+</div>
+
+    {% if input_check_errors %}
+        <script type='text/javascript'> alert('There were errors found. Please check your inputs.') </script>
+    {% endif %}
+
+{% endblock %}

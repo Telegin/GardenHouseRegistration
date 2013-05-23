@@ -1,0 +1,83 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    This will be a child template which is the Login page
+  ------------------------------------------------------------------>
+
+<!-- It's parent template -->
+{% extends 'Homepage.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class='form_container'>
+
+    <form id='login_form' action='/Login/' method='post' onsubmit='return confirmLogin();'>
+
+        <div class='form_instruction_container' id='form_instruction_container'>
+            Welcome to GHRS Login page! We suppose that you already have an account which was approved by the municipality where you live.
+            <div style='color: #F00000; font-size: 12px; margin-top: 9px;'> 
+                Important: You can login with either one of the provided passwords that your municipality have sent to you, or the passwords that you have just changed via the Account page.
+            </div>
+        </div>
+
+        {% if input_check_errors %}
+            <script type='text/javascript'> 
+                var el = document.getElementById('form_instruction_container');
+                el.parentNode.removeChild(el);
+            </script>
+            <div class='error_container'>
+                <div class='error_caption'> 
+                    Sorry, Login failed! There were Errors found:  
+                </div>
+                {% for error in input_check_errors %}
+                    {{ error }} <br/>
+                {% endfor %}
+            </div>
+        {% endif %} 
+
+        <table class='form_table'>
+
+            <tr>
+                <td class='label'> 
+                    E-Mail Address: 
+                </td>
+                <td>
+                    <input class='txtbox' type='text' name='email_address' id='email_address' size='30' value='{{ email_address }}' /> 
+                </td>
+            </tr>
+            <tr>
+                <td class='label'> 
+                    Password: 
+                </td>
+                <td>
+                    <input class='txtbox' type='password' name='password' id='password' size='30' />
+                </td>
+            </tr>
+
+            <tr>
+                <td class='label'> 
+                    Confirm Password: 
+                </td>
+                <td>
+                    <input class='txtbox' type='password' name='confirm_password' id='comfirm_password' size='30' />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan='2' align='center' style='padding-top:8px;'> 
+                    <div style='margin-top: 3px;'> 
+                        <input class='site_button' type='button' onClick='clearLoginFields()' value='Clear' /> &nbsp;
+                        <input class='site_button' type='submit' value='Log me in' />
+                    </div>
+                </td>
+            </tr> 
+
+        </table>
+
+    </form>
+
+</div>
+{% endblock %}

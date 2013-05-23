@@ -1,0 +1,296 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    The Municipality Page
+  ------------------------------------------------------------------>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<!-- Loading the URL portion of CSS, scripts, & images -->
+<!-- 'GardenHouseRegistration/ghrwebsite/static/' -->
+{% load staticfiles %} 
+
+<head>
+    <title> GHRS - Municipality Page </title>
+    <!-- Loading the external css files found in ghrwebsite/static/css -->
+    <link rel='stylesheet' href='{% static "css/site.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/menu.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/form.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/bubble_tooltip.css" %}' type='text/css'>
+    <!-- Loading the external js files found in ghrwebsite/static/javascript -->
+    <script src='{% static "javascript/MunPage.js" %}'></script>
+</head>
+
+<body>
+
+    <!-- This is where all containers are enclosed -->
+    <div class='root_container'>
+
+        <div class='user_access_panel'> 
+            <a href='../Logout/'> Logout </a> 
+        </div>
+        <div class='user_access_panel'> 
+            <a href='../MunPage/'> Account </a> 
+        </div>
+
+        <div class='banner'> <img src='{% static "images/banner.png" %}' /> </div>
+        <div class='trunk_container'>
+            {% include 'MenuBar.html' %} <!-- I put the menu bar on a separate file -->
+
+            <div class='form_title' name='form_munpage' style='margin-top: 10px;'>
+                ACCOUNT REGISTRATION REQUESTS
+            </div>
+            <div class='mun_work_container'>
+                {% if users_who_requested %}
+                    <table class='mun_work_table' cellspacing='0'>
+                        <tr>
+                            <th class='header' style='width:25px;'> Info: </th>
+                            <th class='header' style='width:45px;'> User ID: </th>
+                            <th class='header' style='width:190px;'> Name: </th>
+                            <th class='header' style='width:180px;'> E-Mail: </th>
+                            <th class='header' style='width:240px;'> Address: </th>
+                            <th class='header' style='width:60px;'> Accept: </th>
+                            <th class='header' style='width:60px;'> Deny: </th>
+                            <th class='header' style='width:70px;'> Send: </th>
+                        </tr>
+                    {% for u in users_who_requested %}
+                    <form action='/ManageAcctRequest/' method='post'>
+                        <tr style='background-color: #E0F8F7;'>
+                            <td class='mun_label' style='text-align: center; padding: 0px;'>
+                                <a href='#' class='tt'> 
+                                <img src='../static/images/qmark.png' width = '25px'/>
+		                        <span class='tooltip'>
+		                            <span class='middle'> Date Requested: {{ u.date_requested }} </span>		
+                                </span>		  
+                                </a> 
+                            </td>
+                            <td class='mun_label' style='text-align: center;'>
+                                {{ u.user_id }}
+                            </td>
+                            <td class='mun_label'>
+                                {{ u.family_name }}, {{ u.first_name }}
+                            </td>
+                            <td class='mun_label'>
+                                {{ u.email_address }}
+                            </td>
+                            <td class='mun_label'>
+                                {{ u.address_street }} {{ u.address_number }}, {{ u.address_postcode }}
+                            </td>
+                            <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                <input class='site_button' type='submit' name='Accept' value='Accept' style='font-size: 11px; padding:3px;' onClick='return confirmAcceptAcctReq();' /> 
+                            </td>
+                            <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                <input class='site_button' type='submit'  name='Deny' value='Deny' style='font-size: 11px; padding:3px;' onClick='return confirmDenyAcctReq();' /> 
+                            </td>
+                            <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                <a href='mailto:{{ u.email_address }}'>
+                                    <input class='site_button' type='button' name='Email' value='Email' style='font-size: 11px; padding:3px;' /> </a>
+                            </td>
+                        </tr>
+                        <input type='hidden' name='UserID' value='{{ u.user_id }}' />
+                    </form>
+                    {% endfor %}
+                    </table>
+                {% else %}
+                    <!-- No users who did an Account Request for the moment -->
+                    <div style='text-align:center; font-weight: bold; margin-left: -40px;'> <i> 
+                        There are no account registration requests for the moment. </i> 
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class='form_title' name='form_munpage' style='margin-top: 20px;'>
+                GARDEN HOUSE REGISTRATION REQUESTS
+            </div>
+            <div class='mun_work_container'>
+                {% if ghr_registrants %}
+                    <table class='mun_work_table' cellspacing='0'>
+                        <tr>
+                            <th class='header' style='width:25px;'> Info: </th>
+                            <th class='header' style='width:45px;'> Reg. ID: </th>
+                            <th class='header' style='width:180px;'> Name: </th>
+                            <th class='header' style='width:210px;'> Address: </th>
+                            <th class='header' style='width:70px;'> Used Since: </th>
+                            <th class='header' style='width:100px;'> Attachments: </th>
+                            <th class='header' style='width:60px;'> Accept: </th>
+                            <th class='header' style='width:60px;'> Deny: </th>
+                            <th class='header' style='width:70px;'> Send: </th>
+                        </tr>
+                        {% for a, g in zipped %}
+                            <form action='/ManageGHRRequest/' method='post'>
+                                <tr style='background-color: #E0F8F7;'>
+                                    <td class='mun_label' style='text-align: center; padding: 0px;'>
+                                        <a href='#' class='tt'> 
+                                        <img src='../static/images/qmark.png' width = '25px'/>
+		                                <span class='tooltip'>
+		                                    <span class='middle'> Date Requested: {{ a.date_updated }} </span>		
+                                        </span>		  
+                                        </a> 
+                                    </td> 
+                                    <td class='mun_label' style='text-align: center;'>
+                                        {{ a.registration_id }}
+                                    </td>
+                                    <td class='mun_label'>
+                                        {{ g.family_name }}, {{ g.first_name }}
+                                    </td>
+                                    <td class='mun_label'>
+                                        {{ g.address_street }} {{ g.address_number }}, {{ g.address_postcode }}
+                                    </td>
+                                    <td class='mun_label' style='text-align: center;'>
+                                        {{ a.days_since_used }} days
+                                    </td>
+                                    <td class='mun_label' style='text-align: center; padding: 2px;'>
+                                        <input class='site_button' type='submit' name='Attachments' value='Attachments' style='font-size: 11px; padding:3px;' /> 
+                                    </td>
+                                    <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                        <input class='site_button' type='submit' name='Accept' value='Accept' style='font-size: 11px; padding:3px;' onClick='return confirmAcceptGHR();' /> 
+                                    </td>
+                                    <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                        <input class='site_button' type='submit'  name='Deny' value='Deny' style='font-size: 11px; padding:3px;' onClick='return confirmDenyGHR();' /> 
+                                    </td>
+                                    <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                        <a href='mailto:{{ g.email_address }}'>
+                                            <input class='site_button' type='button' name='Email' value='Email' style='font-size: 11px; padding:3px;' /> </a>
+                                    </td>
+                                </tr> 
+                                <input type='hidden' name='registration_id' value='{{ a.registration_id }}' />
+                                <input type='hidden' name='user_id' value='{{ g.user_id }}' />
+                            </form>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <!-- No users who did a GHR Request for the moment -->
+                    <div style='text-align:center; font-weight: bold; margin-left: -40px;'> <i> 
+                        There are no Garden House Registration Requests for the moment. </i> 
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class='form_title' name='form_munpage' style='margin-top: 20px;'>
+                REGISTERED USER ACCOUNTS
+            </div>
+            <div class='mun_work_container'>
+                {% if users_who_are_accepted %}
+                        <table class='mun_work_table' cellspacing='0'>
+                            <tr>
+                                <th class='header' style='width:25px;'> Info: </th>
+                                <th class='header' style='width:45px;'> User ID: </th>
+                                <th class='header' style='width:190px;'> Name: </th>
+                                <th class='header' style='width:190px;'> E-Mail: </th>
+                                <th class='header' style='width:260px;'> Address: </th>
+                                <th class='header' style='width:70px;'> Confirmation: </th>
+                                <th class='header' style='width:70px;'> Send: </th>
+                            </tr>
+                        {% for u in users_who_are_accepted %}
+                        <form action='/PrintConfirmation/' target='_blank' method='post'>
+                            <tr style='background-color: #E0F8F7;'>
+                                <td class='mun_label' style='text-align: center; padding: 0px;'>
+                                    <a href='#' class='tt'> 
+                                    <img src='../static/images/qmark.png' width = '25px'/>
+		                            <span class='tooltip'>
+		                                <span class='middle'> Date Accepted: {{ u.date_granted }} </span>		
+                                    </span>		  
+                                    </a> 
+                                </td>
+                                <td class='mun_label' style='text-align: center;'>
+                                    {{ u.user_id }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ u.family_name }}, {{ u.first_name }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ u.email_address }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ u.address_street }} {{ u.address_number }}, {{ u.address_postcode }}
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                    <input class='site_button' type='submit' name='Print' value='Print' style='font-size: 11px; padding:3px;' onClick='return confirmPrint();' /> 
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                    <a href='mailto:{{ u.email_address }}'>
+                                    <input class='site_button' type='button' name='Email' value='Email' style='font-size: 11px; padding:3px;' /> </a>
+                                </td>
+                            </tr>
+                            <input type='hidden' name='UserID' value='{{ u.user_id }}' />
+                        </form>
+                        {% endfor %}
+                        </table>
+                {% else %}
+                    <!-- No users who did an Account Request for the moment -->
+                    <div style='text-align:center; font-weight: bold; margin-left: -40px;'> <i> 
+                        There are no registered users for the moment. </i> 
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class='form_title' name='form_munpage' style='margin-top: 20px;'>
+                REGISTERED GARDEN HOUSES
+            </div>
+            <div class='mun_work_container'>
+                {% if ghr_already_accepted %}
+                    <table class='mun_work_table' cellspacing='0'>
+                        <tr>
+                            <th class='header' style='width:25px;'> Info: </th>
+                            <th class='header' style='width:45px;'> Reg ID: </th>
+                            <th class='header' style='width:190px;'> Name: </th>
+                            <th class='header' style='width:190px;'> E-Mail: </th>
+                            <th class='header' style='width:260px;'> Address: </th>
+                            <th class='header' style='width:100px;'> Attachments: </th>
+                            <th class='header' style='width:90px;'> Certificate: </th>
+                            <th class='header' style='width:70px;'> Send: </th>
+                        </tr>
+                    {% for a, g in zipped2 %}
+                        <form action='' method='post'>
+                            <tr style='background-color: #E0F8F7;'>
+                                <td class='mun_label' style='text-align: center; padding: 0px;'>
+                                    <a href='#' class='tt'> 
+                                        <img src='../static/images/qmark.png' width = '25px'/>
+		                                <span class='tooltip'>
+		                                    <span class='middle'> Date Accepted: {{ a.date_granted }} </span>		
+                                        </span>		  
+                                    </a> 
+                                </td> 
+                                <td class='mun_label' style='text-align: center;'>
+                                    {{ a.registration_id }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ g.family_name }}, {{ g.first_name }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ g.email_address }}
+                                </td>
+                                <td class='mun_label'>
+                                    {{ g.address_street }} {{ g.address_number }}, {{ g.address_postcode }}
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'>
+                                    <input class='site_button' type='submit' name='Attachments' value='Attachments' style='font-size: 11px; padding:3px;' /> 
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'>
+                                    <input class='site_button' type='submit' name='PrintCertificate' value='Print' style='font-size: 11px; padding:3px;' /> 
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'> 
+                                    <a href='mailto:{{ g.email_address }}'>
+                                    <input class='site_button' type='button' name='Email' value='Email' style='font-size: 11px; padding:3px;' /> </a>
+                                </td>
+                            </tr>
+                            <input type='hidden' name='registration_id' value='{{ a.registration_id }}' />
+                            <input type='hidden' name='user_id' value='{{ g.user_id }}' />
+                        </form>
+                    {% endfor %}
+                    </table>
+                {% else %}
+                    <!-- No Accepted Garden House Registration yet -->
+                    <div style='text-align:center; font-weight: bold; margin-left: -40px;'> <i> 
+                        There are no registered Garden Houses for the moment. </i> 
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

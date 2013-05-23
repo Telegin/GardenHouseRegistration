@@ -1,0 +1,27 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    This will be html components for the menu bar.
+    Dependency to be displayed nicely: static/css/menu.css
+  ------------------------------------------------------------------>
+
+<div id='cssmenu'>
+    <ul>
+        <li class='active'><a href='../'><span>Home</span></a></li>
+        <li class='has-sub'><a href='#'><span>Legal Specification</span></a>
+            <ul>
+                <li><a href='../LegalSpecEng/'><span>English Version</span></a></li>
+                <li class='last'><a href='../LegalSpecFr/'><span>French Version</span></a></li>
+            </ul>
+        </li>
+        {% if request.session.pageURL == '/MunPage/' %}
+            <li class='last'><a href='/EditMunProf/'><span>Edit Municipality Profile</span></a></li>
+        {% endif %}
+        <li><a href='#'><span>About GHRS</span></a></li>
+        {% if request.session.pageURL == '/UserPage/' %}
+            <li class='last'><a href='#'><span>Contact Municipality</span></a></li>
+        {% endif %}
+    </ul>
+</div>

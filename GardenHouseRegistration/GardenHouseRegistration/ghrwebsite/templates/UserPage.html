@@ -1,0 +1,165 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    The User Page
+  ------------------------------------------------------------------>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<!-- Loading the URL portion of CSS, scripts, & images -->
+<!-- 'GardenHouseRegistration/ghrwebsite/static/' -->
+{% load staticfiles %} 
+
+<head>
+    <title> GHRS - Common User Page </title>
+    <!-- Loading the external css files found in ghrwebsite/static/css -->
+    <link rel='stylesheet' href='{% static "css/site.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/menu.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/form.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/bubble_tooltip.css" %}' type='text/css'>
+</head>
+
+<body>
+
+    <!-- This is where all containers are enclosed -->
+    <div class='root_container'>
+
+        {% if not request.session.loggedin %}
+            <div class='user_access_panel'> 
+                <a href='../WhatCanton/'> Request for Account </a> 
+            </div>
+            <div class='user_access_panel'> 
+                <a href='../Login/'> Login </a> 
+            </div>
+        {% else %}
+            <div class='user_access_panel'> 
+                <a href='../Logout/'> Logout </a> 
+            </div>
+            <div class='user_access_panel'> 
+                <a href='../UserPage/'> Account </a> 
+            </div>
+        {% endif %}
+
+        <div class='banner'> <img src='{% static "images/banner.png" %}' /> </div>
+        <div class='trunk_container'>
+            {% include 'MenuBar.html' %} <!-- I put the menu bar on a separate file -->
+            <div id='parentdiv'>
+            <div class='form_title' name='form_munpage' style='margin-top: 15px; width:430px;'>
+                MY GARDEN HOUSE REGISTRATION REQUESTS
+            </div>
+            <div class='mun_work_container' style='width:432px;'>
+                {% if my_ghr %}
+                    <table class='mun_work_table' cellspacing='0'>
+                        <tr>
+                            <th class='header' style='width:105px;'> Date Requested: </th>
+                            <th class='header' style='width:105px;'> Days Since Used: </th>
+                            <th class='header' style='width:80px;'> Status: </th>
+                            <th class='header' style='width:80px;'> Certificate: </th>
+                        </tr>
+
+                        <form action='/PrintCertificate/' target='_blank' method='post'>
+                        {% for m in my_ghr %}
+                            <tr style='background-color: #E0F8F7;'>
+                                <td class='mun_label' style='text-align: center;'>
+                                    {{ m.date_updated|date:"m-d-Y"  }}
+                                </td>
+                                <td class='mun_label' style='text-align: center;'>
+                                    {{ m.days_since_used }} days
+                                </td>
+                                <td class='mun_label' style='text-align: center;'>
+                                    {% if m.status == 0 %} <i> Processing... </i> {% endif %}
+                                    {% if m.status == 1 %}  <b> Accepted </b> {% endif %}   
+                                    {% if m.status == 2 %}  <i><b> Request Denied </b></i> {% endif %}   
+                                </td>
+                                <td class='mun_label' style='text-align: center; padding: 2px;'>
+                                    {% if m.status == 1 %}   
+                                        <input class='site_button' type='submit'  name='PrintCertificate' value='Print' style='font-size: 11px; padding:3px;' onClick='return confirmPrintCertificate();' /> 
+                                    {% endif %}  
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </form>
+                    </table>
+                {% else %}
+                    <!-- No users who did a GHR Request for the moment -->
+                    <div style='text-align:center; font-weight: bold; margin-left: -60px;'> <i> 
+                        You didn't attempt to register any Garden Houses. </i> <br/>
+                    </div>
+                {% endif %}
+            </div>
+            <div>
+            <div class='form_title' name='form_munpage' style='margin-top: 15px; width:430px;'>
+                REGISTER GARDEN HOUSE
+            </div>
+            <div class='mun_work_container' style='width:432px;'>
+                <form action='/RegisterGardenHouse/' method='post' onsubmit='return confirmRegGH();' enctype='multipart/form-data'>
+                    <div class='form_instruction_container' id='form_instruction_container' style='width:408px;'>
+                        Welcome to Garden House Registration section! All requests need an approval from the municipality where you live in order for you to print your registration certificate.
+                        <div style='color: #F00000; font-size: 12px; margin-top: 9px;'> 
+                            Important: Upon attaching files, it it necessary for you to provide these information: (a) indication of the location, (b) floor area, (c) type of construction, and (d) conditions of liability insurance and fire. Failure to provide these infos may result to the denial of your registration request. <br/><br/> Please be reminded that you are allowed up to 5 file attachments, with a limit of not more than 2MB each file, and the accepted file types: PDF, PNG, JPEG, and GIF only.
+                        </div>
+                    </div>
+
+                    {% if input_check_errors %}
+                        <div class='error_container' style='width:408px;'>
+                            <div class='error_caption'> 
+                                Sorry, there were Errors found: 
+                            </div>
+                            {% for error in input_check_errors %}
+                                {{ error }} <br/>
+                            {% endfor %}
+                        </div>
+                    {% endif %} 
+                    <div class='form_instruction_container' style='width: 408px;'>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; About how many days since it was used? &nbsp;&nbsp;
+                            <input class='txtbox' type='text' name='days_since_used' id='days_since_used' size='2' value='{{ days_since_used }}' />
+                    </div>
+                    <!-- For File Uploads. Limit = 5 -->
+                    <div id='inputdiv' class='form_instruction_container' style='width: 408px;'>
+                        <input type='file' name='files' />
+	                </div>
+                    <div style='margin-left: 75px;'>
+                        <input class='site_button' type='button' value='Add More File' onClick='addInputTag();' />
+                        <input class='site_button' type='submit' value='Register Garden House' />
+                    </div>
+                </form>
+            </div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+    </div>
+    {% if input_check_errors %}
+        <script type='text/javascript'> alert('There were errors found. Please check your inputs.')         </script>
+    {% endif %}
+    <script type='text/javascript'>
+        function addInputTag() {
+            var mydiv = document.getElementById('inputdiv');
+			var count = (mydiv.getElementsByTagName('input').length) + 1;
+
+            var element = document.createElement("input");
+            element.setAttribute("type", 'file');
+            element.setAttribute("name", 'files');
+
+			var x = '';
+            if(count <= 5) {
+			    for(var i = 0; i < count; i++) {
+				    mydiv.appendChild(element);
+			    }
+            } else {
+                alert('File Upload Limit Exceeded. Allowed = 5');
+            }
+        }
+        function confirmRegGH() {
+            if (confirm('Confirm Garden House Registration...')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

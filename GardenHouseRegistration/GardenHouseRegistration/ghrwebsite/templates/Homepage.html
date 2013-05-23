@@ -1,0 +1,63 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    This will be the base/parent template of the website project.
+    It will also serve as the Homepage.
+  ------------------------------------------------------------------>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<!-- Loading the URL portion of CSS, scripts, & images -->
+<!-- 'GardenHouseRegistration/ghrwebsite/static/' -->
+{% load staticfiles %} 
+
+<head>
+    <title>
+        {% block title %} Welcome to GHRS! {% endblock %}
+    </title>
+    <!-- Loading the external css files found in ghrwebsite/static/css -->
+    <link rel='stylesheet' href='{% static "css/site.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/menu.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/form.css" %}' type='text/css'>
+    <link rel='stylesheet' href='{% static "css/bubble_tooltip.css" %}' type='text/css'>
+    <!-- Loading the external js files found in ghrwebsite/static/javascript -->
+    <script src='{% static "javascript/RegAcctForm.js" %}'></script>
+    <script src='{% static "javascript/LoginForm.js" %}'></script>
+    <script src='{% static "javascript/EditMunProf.js" %}'></script>
+</head>
+
+<body>
+
+    <!-- This is where all containers are enclosed -->
+    <div class='root_container'>
+
+        {% if not request.session.loggedin %}
+            <div class='user_access_panel'> 
+                <a href='../WhatCanton/'> Request for Account </a> 
+            </div>
+            <div class='user_access_panel'> 
+                <a href='../Login/'> Login </a> 
+            </div>
+        {% else %}
+            <div class='user_access_panel'> 
+                <a href='../Logout/'> Logout </a> 
+            </div>
+            <div class='user_access_panel'> 
+                <a href='{{ request.session.pageURL }}'> Account </a> 
+            </div>
+        {% endif %}
+
+        <div class='banner'> <img src='{% static "images/banner.png" %}' /> </div>
+        <div class='trunk_container'>
+            {% include 'MenuBar.html' %} <!-- I put the menu bar on a separate file -->
+            {% block content %} {% endblock %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

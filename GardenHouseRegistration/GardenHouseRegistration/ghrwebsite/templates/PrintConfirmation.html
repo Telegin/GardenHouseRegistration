@@ -1,0 +1,68 @@
+<!------------------------------------------------------------------
+    Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+            University of Fribourg, Switzerland
+      E-Government Class Project - Garden House Registration
+
+    Used in Printing the Account Acceptance Confirmation to send
+    to the user's address.
+  ------------------------------------------------------------------>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<!-- Loading the URL portion of CSS, scripts, & images -->
+<!-- 'GardenHouseRegistration/ghrwebsite/static/' -->
+{% load staticfiles %} 
+
+<head>
+    <title>
+        {% block title %} Print Account Confirmation {% endblock %}
+    </title>
+</head>
+
+<body>
+
+    <!-- This is where all containers are enclosed -->
+    <div class='root_container'>
+        <div style='margin-left: 50px; margin-top: 70px;'>
+            {{ the_user.first_name }} {{ the_user.family_name }} <br/>
+            {{ the_user.address_street }} {{the_user.address_number }} <br/>
+            {{ the_user.address_postcode}} {{ municipality.municipality_name }} {{ canton_initial }}
+        </div>
+        <div style='margin-left: 50px; margin-top: 55px;'>
+            {{ date_now }}
+        </div>
+        <div style='margin-left: 50px; margin-top: 30px; text-align: justify;'>
+            Dear Mr./Ms. {{ the_user.family_name }}, <br/> <br/>
+            On behalf of the municipality of {{ municipality.municipality_name }} {{ canton_initial }}, we would like to welcome you as a <br/>
+            registered member of the Garden House Registration System. <br/> <br/>
+            Enclosed in this letter are your login e-mail and two temporary passwords, in order <br/> for you to be logged into the system:
+        </div>
+        <div style='margin-left: 160px; text-align: justify; border: 2px solid #588514; width: 250px; padding: 9px; font-weight:bold; margin-top: 10px;'>
+                Login: {{ the_user.email_address }} <br/>
+                Password1: {{ the_user.password1 }} <br/>
+                Password2: {{ the_user.password2 }}
+        </div>
+        <div style='margin-left: 50px; margin-top: 20px; text-align: justify;'>
+            It is advised to change these two passwords from your account settings for your own <br/> security. 
+            You can log into the system using these two passwords. <br/><br/>
+            Before registering your garden house/s, we invite you to read the legal specification <br/> and our requirements
+            on the website, so that it will be easier to process your garden <br/> house registration/s. Please disregard this letter if you already received one. <br/><br/>
+            Thank you for your cooperation. This will lead to a better municipality management. <br/><br/>
+            Kind Regards, <br/>
+            Municipality of {{ municipality.municipality_name }} <br/><br/><br/>
+            ____________________________ <br/>
+            GHRS System Admin / In-charge <br/><br/>
+            Municipality of {{ municipality.municipality_name }} <br/>
+            {{ municipality.address_street }} {{ municipality.address_number }} <br/>
+            {{ municipality.address_postcode}} {{ municipality.municipality_name }} {{ canton_initial }}
+        </div>
+    </div>
+
+    <script type='text/javascript'>
+        window.print();
+    </script>
+
+</body>
+
+</html>

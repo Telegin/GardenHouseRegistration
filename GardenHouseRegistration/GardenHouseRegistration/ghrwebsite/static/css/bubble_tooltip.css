@@ -1,0 +1,68 @@
+/**********************************************************************
+ *     Author: Jerald James A. Capao (jeraldjamescapao@gmail.com)
+ *              University of Fribourg, Switzerland
+ *       E-Government Class Project - Garden House Registration
+ *                     Bubble Tooltip Styles
+ **********************************************************************/
+
+a.tt
+{
+    position: relative;
+    z-index: 24;
+	font-weight: bold;
+    text-decoration: none;
+    cursor: default;
+}
+
+a.tt span
+{ 
+    display: none;
+    text-decoration: none;
+}
+
+a.tt:hover span.tooltip
+{
+    display: block; 
+    position: absolute; 
+    top: -25px; 
+    left: 30px;
+	padding: 0px; 
+    margin: 0px; 
+    width: 350px; 
+    height: auto; 
+    cursor: default;
+    text-decoration: none;
+}
+
+/* Different middle bg for stretch */
+a.tt:hover span.middle
+{ 
+	display: block;
+	position: absolute;
+
+	font-size: 12px;
+	font-weight: bold;
+    color: #588514;
+	background-color: #FFFFFF;
+
+	top: 7px;
+    left: 0px;
+	padding: 8px 8px 8px 8px;
+	margin: 0px 0px 0px 10px;
+	height: auto;
+    text-align: left;
+	text-decoration: none;
+    cursor: default;
+    border: 2px solid;
+
+    -moz-border-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+}
